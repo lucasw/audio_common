@@ -1,11 +1,15 @@
 <launch>
   <!-- arecord -l will show available input devices, use the car number as
       the first number and the subdevice number as the second in a string
-      like hw:1,0 -->
+      like hw:1,0 
+      run pacmd list-sources to input specs
+      (but not all possible ones?)
+      -->
   <arg name="device" default=""/>
   <arg name="channels" default="1"/>
   <arg name="sample_rate" default="16000"/>
-  <arg name="ns" default="audio"/>
+  <arg name="format" default="mp3" doc="can only be mp3 or wave"/>
+  <arg name="ns" default="audio" doc="namespace to run node in"/>
 
   <group ns="$(arg ns)">
   <node name="audio_capture" pkg="audio_capture" type="audio_capture" output="screen">
@@ -13,6 +17,7 @@
     <param name="device" value="$(arg device)"/>
     <param name="channels" value="$(arg channels)"/>
     <param name="sample_rate" value="$(arg sample_rate)"/>
+    <param name="format" value="$(arg format)"/>
   </node>
   </group>
 
