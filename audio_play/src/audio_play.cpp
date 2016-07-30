@@ -83,7 +83,7 @@ namespace audio_transport
         g_signal_emit_by_name(_source, "push-buffer", buffer, &ret);
       }
 
-     static void cb_newpad (GstElement *decodebin, GstPad *pad, 
+     static void cb_newpad (GstElement *decodebin, GstPad *pad,
                              gpointer data)
       {
         RosGstPlay *client = reinterpret_cast<RosGstPlay*>(data);
